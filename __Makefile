@@ -1,28 +1,26 @@
 # single file 
 Q :=@
-PWD := $(shell pwd)
-#PROJ := pipe  thread key input sort
-PROJ := $(shell find $(PWD) -name "*.c")
-PROJ := $(patsubst $(PWD)/%.c,%,$(PROJ))
+source := $(wildcard *.c)  $(wildcard sub/*.c)
+OBJ := $(patsubst %.c,%.o,$(source))
+#code += sub
+PROJ :=  pipe thread key input sort
 APP := exe
-OBJ := $(foreach n,$(PROJ),$(n).o)
+
 OUT := output
 .PHONY : all clean
-all:$(OBJ) $(PROJ) 
-
-pipe: pipe.o
+all:$(OBJ) $(PROJ) install
+pipe:
 	gcc -o $@ $@.o
-thread: thread.o
+thread:
 	gcc -o $@ $@.o -lpthread
-key: key.o
+key:
 	gcc -o $@ $@.o
-input:input.o
+input:
 	gcc -o $@ $@.o
-sort : sort.o
+sort:
 	gcc -o $@ $@.o
 %.o : %.c
 	gcc -c $^ -o $@ 
-
 install:
 ifeq ($(OUT),$(wildcard $(OUT))) #ifeq ()  note:ifeq后面要有空格
 	$(Q)echo "------file$(OUT) exist"

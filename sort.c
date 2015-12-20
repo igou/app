@@ -1,3 +1,5 @@
+#include<stdio.h>
+#include<stdlib.h>
 void insertsort(int a[],int length)
 {
 	int index;
@@ -9,7 +11,7 @@ void insertsort(int a[],int length)
 		printf("\n\n");
 	for(index=1;index<length;index++)
 	{
-		if(a[index]<a[index-1])
+		if(a[index]<a[index-1])//if not ,will sort again
 		{
 			i = index;
 			while(i>0&&a[i]<a[i-1])
@@ -23,4 +25,9 @@ void insertsort(int a[],int length)
 	}
 	for(i=0;i<length;i++) 
 		printf("%d,",a[i]);	
+}
+
+int main(void)
+{
+ return 1;
 }
