@@ -48,6 +48,8 @@ int _str_reverse(char * s)
 int main(int argc, char *argv[]) {
  char str[]="abcdef";
  _str_reverse(str); /*Fix: the str should be modifiable==>
-                                    _str_reverse("abcdef");Error:it will occur seg fault if modify data of "acdef"*/
+                      _str_reverse("abcdef");Error:it will occur 
+		      seg fault if modify data of "acdef"
+		    */
  #endif
 }
