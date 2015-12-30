@@ -5,6 +5,7 @@ typedef struct tree{
 struct tree * left;
 struct tree * right;
 int         value;
+int count;
 }tree_t;
 int build_tree(tree_t ** proot,int value){
 	tree_t *root=*proot; // point
@@ -16,7 +17,7 @@ int build_tree(tree_t ** proot,int value){
 	  	root = (tree_t *)malloc(sizeof(tree_t));
 	  	memset(root,0x00,sizeof(tree_t));
 	  	root->value = value;
-		printf("malloc\n");
+	  	root->count ++;
 	   }
 	else
 	{
@@ -26,7 +27,8 @@ int build_tree(tree_t ** proot,int value){
 			memset(left,0x00,sizeof(tree_t));
 			root->left = left;
 			left->value = value;
-				printf("world\n");}
+			left->count ++;
+			}
 			else{
 			build_tree(&root->left,value);}
 		}
@@ -36,21 +38,66 @@ int build_tree(tree_t ** proot,int value){
 			memset(right,0x00,sizeof(tree_t));
 			root->right = right;
 			right->value = value;
+			right->count ++;
 			}
 			else{
 			build_tree(&root->right,value);}
-		}		
+		}
+		else
+			root->count++;		
 }
 *proot=root;
 return 0;
 }
-
-int main(void)
+void visit(tree_t * root)
 {
+	printf("%c:%d  ",root->value,root->count);
+}
+int midorder(tree_t *root)
+{
+	if(root == NULL)
+		return 1;
+
+	midorder(root->left);
+	visit(root);
+	midorder(root->right);
+	return 0;
+}
+int postorder(tree_t *root)
+{
+	if(root == NULL)
+		return 1;
+
+	postorder(root->left);
+	postorder(root->right);
+	visit(root);
+	return 0;
+}
+
+int preorder(tree_t *root)
+{
+	if(root == NULL)
+		return 1;
+	visit(root);
+	preorder(root->left);
+	preorder(root->right);
+	return 0;
+}
+int main(void)
+{ //二叉树统计字母个数  TODO：统计单词个数，将数值比较换为string compare 
+	char str[]={"haabfbbtc"}; 
 	tree_t * root=NULL;
-	build_tree(&root,5);
-	build_tree(&root,7);
-	build_tree(&root,3);
-	printf("xxxxxx %d %d %d",root->value,root->right->value,root->left->value);
+	int i=0;
+	
+	for(i=0;str[i] != 0;i++)
+	{
+		build_tree(&root,str[i]);// 每个node从root往下找自己的位置	
+	}
+	preorder(root);
+	printf("\n");
+	midorder(root);
+	printf("\n");
+	postorder(root);
+	printf("\n"); 
 	return 0;
 }
