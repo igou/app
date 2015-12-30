@@ -1,0 +1,35 @@
+[plain] view plaincopyprint?
+---代表源文件  
++++代表目标文件  
+通常working area的文件都是被当作目标文件来看待。
+-开头的行，是只出现在源文件中的行
+
++开头的行，是只出现在目标文件中的行
+
+空格开头的行，是源文件和目标文件中都出现的行
+
+差异按照差异小结进行组织，每个差异小结的第一行都是定位语句，由@@开头，@@结尾。
+
+[plain] view plaincopyprint?
+chenshu@chenshu-yangzhou-home:~/kaimei/data_service/src$ git diff 0c5ee16a6a4c849d0ae0448caa8ff174399c7c3c ./socket_helper.cpp  
+diff --git a/data_service/src/socket_helper.cpp b/data_service/src/socket_helper.cpp  
+index d606452..047e213 100755  
+--- a/data_service/src/socket_helper.cpp  
++++ b/data_service/src/socket_helper.cpp  
+@@ -4,6 +4,7 @@  
+ #include "data/login_response.h"  
+ #include "data/heartbeat_response.h"  
+ #include "helper/parser.h"  
++#include "helper/time_measure.h"  
+ #include <booster/log.h>  
+ #include "exception/socket_error.h"  
+ #include "exception/data_error.h"  
+上面的diff结果表明
+1.某个提交记录0c5ee代表的socket_helper.cpp文件是源文件，当前working area的socket_helper文件是目标文件。
+
+2.在源文件第4行开始的6行和目标文件第4行开始的7行构成一个差异小结
+
+3.这个差异小结中，目标文件添加了一行#include "helper/time_measure.h"
+
+4.其他空格开头的行表明没有差异。
+

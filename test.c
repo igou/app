@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<string.h>
-
+// int a=1; int b=a; build error  [constant value]
 void error_sizeof_example(char str[])
 {
 	int i =sizeof(str)/sizeof(str[0]); 
@@ -105,6 +105,15 @@ int main(void)
 			  printf("chg:%d %d\n",a,b);			  
 			}
 			break;
+            case 9:
+			{
+				int a,b,c;
+				c=9;
+				c=c++%5;//c会修改两次，行为未定义 
+				b=c;
+				printf("%d\n",b);			
+			 } 
+            break;
 		default:
 			break;	
 	} 
