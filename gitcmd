@@ -1,4 +1,4 @@
-
+working --index（stage）--resp 
 **********************************************************************
 mkdir dir
 cd dir
@@ -63,15 +63,15 @@ git fetch -p
 **********************************************************************
 git pull origin remote_branch //瑙ｅ喅鍐茬獊闂
 **********************************************************************
-rm鏈湴鏂囦欢鍚庡浣曟洿鏂板埌鏈嶅姟鍣?
+working tree中删掉该文件如何add 
 **********************************************************************
-git add 琛ㄧず add to index only files created or modified and not those deleted
-git add 鍙皢鏂板缓鐨勬垨鑰呭凡鏇存敼鐨勬枃浠舵坊鍔犲埌绱㈠紩鍖恒�傦紙涓嶄細娣诲姞鍒犻櫎鐨勬枃浠?
-浣嗘槸鎴戜滑鐜板湪鏄�氳繃鍏坮m鐨勫懡浠わ紝閭ｅ簲璇ュ浣曞畬鎴愭彁浜わ紝骞剁湡姝ｄ粠鏈嶅姟绔垹闄ゅ憿锛?
-git add -u
-git add -u  杩欎釜鍛戒护鐨勬剰鎬濇槸 add to index only files modified or deleted
-	    and not those created
-鍙細澶勭悊宸蹭慨鏀规垨鑰呭凡鍒犻櫎鐨勬枃浠讹紝浣嗘槸涓嶄細澶勭悊鏂板缓鐨勬枃浠?
+git add <path>表示 add to index only files created or modified and not those deleted 
+			  我通常是通过git add <path>的形式把我们<path>添加到索引库中，<path>可以
+			  是文件也可以是目录;不仅能判断出<path>中，修改（不包括已删除）的文件，
+			  还能判断出新添的文件，并把它们的信息添加到索引库中。
+git add -u 表示 add to index only files modified or deleted and not those created 
+git add -u [<path>]: 把<path>中所有tracked文件中被修改过或已删除文件的信息添加到索引库。
+					它不会处理untracted的文件。省略<path>表示.,即当前目录
 *****************************************************************
 鍒犻櫎宸插姞鍏ョ紦瀛樺尯鐨勬枃浠?
 *****************************************************************
@@ -82,6 +82,18 @@ git rm --cached "file path"
 git fetch origin server_branch:xx (新开本地分支)
 git diff xx
 git merge xx 将xx分支合并到该分支，如果只是拉下该分支可以不合
-git checkout xx   可以直接切换到该分支操作了
+git checkout xx   可以直接切换到该分支操作
 git fetch origin server_branch:xx (新开本地分支)
 *****************************************************************
+git diff 
+*****************************************************************
+git diff xx working tree与index的比较
+git diff --cached index与版本库的比较
+gid diff HEAD working tree与版本库的比较
+git diff x y  x y之间的比较  x,y可以是目录，commit id 
+*****************************************************************
+撤销修改 
+*****************************************************************
+git checkout --file 当你修改了工作区某个文件的内容，丢弃工作区的修改；从版本库中替换工作区文件 
+git checkout 把当前目录所有修改的文件，恢复为HEAD中未修改的状态 
+****************************************************************** 
