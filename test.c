@@ -38,7 +38,7 @@ int main(void)
 				int a=10;
 				/*printf的运行顺序有关
 				 * (*p)++  1，打印的是(*p)的值，++由于是右++，所以打印值不会是加1的值；2，(*p)++有写操作，注意p指向内容的可读属性； 
-				 *  *p++,*(p++)是等同的，单目运算符结合方向由右向左 *(p++),所以是先p+1, 于是右++,所以*p的值是去加1以前的地址的值； 
+				 *  *p++,*(p++)是等同的，单目运算符结合方向由右向左 *(p++),所以是先p+1, 由于是右++,所以*p的值是取加1以前的地址的值； 
 				 */
 		  		printf("Demo 2:   %c %c %c\n",*p++,*(p++),(*p)++); //从右往左计算 
 		  		printf("%d,%d\n",a,a=a+1);
@@ -61,7 +61,11 @@ int main(void)
 		{
 		//#define SECONDS_PER_YEAR (60 * 60 * 24 * 365)UL    // build error 数字后面加UL,不是括号后面 
 		#define SECONDS_PER_YEAR (60UL* 60 * 24 * 365)
-		printf("%d\n",SECONDS_PER_YEAR);	
+		printf("%d\n",SECONDS_PER_YEAR);
+		#define  ADD(m)  do{\
+							 printf(#m"=%d\n",m);\
+							}while(0) //usage: #
+		ADD(9); 	
 		} 
 		break;
 		case 5:
@@ -114,6 +118,26 @@ int main(void)
 				printf("%d\n",b);			
 			 } 
             break;
+            case 10:
+			#if 1
+			#define BUILD_BUG_ON(condition)  (sizeof(char[1-2*!!(condition)])) //这里的!!是为了处理传入宏参数为表达式的 
+			#else
+/* linux macros */
+			#define BUILD_BUG_ON(condition) ((void)sizeof(char[1 - 2*!!(condition)]))
+			#endif
+				#define MAC1 1
+				#define MAC2 2
+			BUILD_BUG_ON(MAC1 == MAC2);//检查宏定义的值是否一致 	
+			break;
+			case 11:
+				{
+				#define TYPE_CHK(type,VA)  ({type std; \
+								(&std==&VA);\
+								1;})
+				char b;
+				TYPE_CHK(int ,b);
+				}
+			break;
 		default:
 			break;	
 	} 
