@@ -24,6 +24,12 @@ int _strcmp(const char *s1,const char *s2)
 	else
 		return ((l1<l2)?-1:1);
 }
+void swap(char *a,char *b)
+{
+	*a = *a^*b;
+	*b = *a^*b;
+	*a = *a^*b;
+}
 int _str_reverse(char * s) 
 {
 	int len,i,j;		char tmp;
@@ -32,13 +38,14 @@ int _str_reverse(char * s)
 	len = strlen(s);
 	for(i=0;i<len;i++)
 		printf("%c ",s[i]);
-	printf("%d \n",len); 
+	printf("\n");
 	for(i=0;i<(len/2);i++){
-
-		tmp = s[i];
-		printf("\n %d \n",len-i-1); 
+		swap(s+i,s+len-1-i);
+		#if 0
+		 tmp = s[i];
 	     s[i]= s[len-1-i];
 		 s[len-1-i] = tmp;
+		#endif 
 	}
 	for(i=0;i<len;i++)
 		printf("%c ",s[i]);
@@ -129,11 +136,11 @@ int  print_star(void)
 }
 
 int main(int argc, char *argv[]) {
- char str[]="abcdef";
+ char str[]="khdffds";
 
  alphabet_fre("helllloworlkd");
  alphabet_longest("helloowoooorldddddddddddd");
- //_str_reverse(str);
+ _str_reverse(str);
   /*Fix: the str should be modifiable==>
                       _str_reverse("abcdef");Error:it will occur 
 		      seg fault if modify data of "acdef"
