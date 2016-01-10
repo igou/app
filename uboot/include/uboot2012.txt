@@ -1,0 +1,20 @@
+﻿uboot2012:
+make smdk2410_config  ====设置arch CPU board soc等变量，将这些变量放入生成的/include/config.mk文件里，然后定义
+这些的宏以及添加一些头文件到放入/include/config.h中
+Makefile==>
+%_config::	unconfig
+	@$(MKCONFIG) -A $(@:_config=)
+
+进入mkconfig -A表示自动模式  $(@:_config=)去掉_config
+mkconfig==>
+if [ \( $# -eq 2 \) -a \( "$1" = "-A" \) ] ; then
+	# Automatic mode
+	line=`egrep -i "^[[:space:]]*${2}[[:space:]]" boards.cfg` || {
+		echo "make: *** No rule to make target \`$2_config'.  Stop." >&2
+		exit 1
+	}
+在boards.cfg中匹配smdk2410 = line那一行""中就是匹配 ^空格*smdk2410空格，[[:space:]]匹配空格
+注：BRE 基础正则表达式 ERE 扩展正则表达式
+注：
+[::] 字符集 ex: [:alpha:] 字母字符 [:alnum:] 数字字符 
+    [:upper:] 大写 [:lower:] 小写 [:space:] 空格（和'\t'）
