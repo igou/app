@@ -82,7 +82,8 @@ int main(void)
 {
 	int entry=0;
 
-	scanf("%d",&entry);
+    printf("input cmd:");
+	while(scanf("%d",&entry)!=EOF){
 
 	switch(entry) {
 		case 1:
@@ -196,9 +197,17 @@ int main(void)
 			TYPE_CHK(int ,b);
 		}
 		break;
+		case 12:
+		    {
+		        char str[]="hello";
+		        void * nul=(void *)str;
+		        //*nul='a'; // build error:complier don't know the length of *nul due to the type void *
+            }
+            break;
 		default:
 			break;
 	}
-
+	 printf("input cmd again or exit:");
+}
 	return 0;
 }
