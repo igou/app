@@ -24,6 +24,23 @@ int _strcmp(const char *s1,const char *s2)
 	else
 		return ((l1<l2)?-1:1);
 }
+void * _memcpy(void *dst,void const *src,int size) 
+{ 
+    int byte = size&0x03;
+    char *d = (char *)dst,*s = (char *)src; 
+
+    size -= byte;
+
+    while(byte--){
+          *d++ = *s++;
+      }
+    for(;size>0;size-=4){
+        *d++ = *s++;
+        *d++ = *s++;
+        *d++ = *s++;
+        *d++ = *s++;
+    } 
+}
 void swap(char *a,char *b)
 {
 	*a = *a^*b;
@@ -137,7 +154,8 @@ int  print_star(void)
 
 int main(int argc, char *argv[]) {
  char str[]="khdffds";
-
+ char dst[20]={0};
+ char *src="testmemcpy";
  alphabet_fre("helllloworlkd");
  alphabet_longest("helloowoooorldddddddddddd");
  _str_reverse(str);
@@ -146,4 +164,7 @@ int main(int argc, char *argv[]) {
 		      seg fault if modify data of "acdef"
 		    */
  print_star();
+  printf("||%s|| %s\n",dst,src);
+ _memcpy(dst,src,strlen(src));
+ printf("%s\n",dst);
 }
