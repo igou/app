@@ -1,12 +1,14 @@
 DIR := $(shell pwd)
 # note: $$1    -F'/igou' not '/igou/'
 ROOT := $(shell pwd | awk -F'/igou' '{print $$1}') 
-# note: $$9
+# note: $$9   awk 
 resul := $(shell ls -l | awk '/Aug/ {print $$9}')
+#awk 'BEGIN{ commands } pattern{ commands } END{ commands }'
+BASE := $(shell ls -l | awk 'BEGIN{print "start line"} $$1 ~/^d/ {print "line:"NR"  "    $$1"   "$$9 ;print"" } END{print "end line"}' ) 
 ARCH := $(shell uname -m | sed -e s/i686/Intel/)
 all:
 	@echo "ARCH is $(ARCH)"
 	@echo "DIR is $(DIR)"
 	@echo "ROOT is $(ROOT)"
-	foreach(v,$(resul))
-	@echo " $(resul)"
+	@echo "BASE is $(BASE)"
+#	foreach(v,$(resul),echo "$(v)")
