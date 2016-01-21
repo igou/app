@@ -1,1 +1,3 @@
 ATA Advanced Technology Attachment
+SSD HDD
+PCIE SATA 	

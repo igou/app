@@ -204,10 +204,23 @@ int main(void)
 		        //*nul='a'; // build error:complier don't know the length of *nul due to the type void *
             }
             break;
+        case 13:
+        	{
+        		double a =11.1;
+        		float c=13.24;
+        		double b=0;
+        		printf("double %f\n",a);
+        		a++;
+        		printf("add 1 :%f",a);
+        	//	b = c%3; //float double≤ªƒ‹»°”‡ 
+        	//	b = a%2; //build Error: invalid operands to binary % (have 'double' and 'int')
+        		b = a/4; 
+			}
+			break; 
 		default:
 			break;
 	}
-	 printf("input cmd again or exit:");
+	 printf("\ninput cmd again or exit:");
 }
 	return 0;
 }
