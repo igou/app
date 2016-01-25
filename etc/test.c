@@ -224,6 +224,11 @@ int main(void)
         	//	b >>=2;  //float DOUBLE 不能位操作
         		b = a/4; 
 			}
+		case 14:
+			{
+				char byte = 027;
+				printf("value is %d\n",byte);				
+			 } 
 			break; 
 		default:
 			break;
