@@ -1,6 +1,12 @@
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
+typedef struct{
+	int a;
+	char b;	
+}tst_t,*ptst_t;
+tst_t _v_;
+ptst_t _p_ = &_v_;
 // int a=1; int b=a; build error  [constant value]
 void error_sizeof_example(char str[])
 {
@@ -84,6 +90,7 @@ int main(void)
 
     printf("input cmd:");
 	while(scanf("%d",&entry)!=EOF){
+	getchar();//eat 
 
 	switch(entry) {
 		case 1:
@@ -204,10 +211,30 @@ int main(void)
 		        //*nul='a'; // build error:complier don't know the length of *nul due to the type void *
             }
             break;
+        case 13:
+        	{
+        		double a =11.1;
+        		float c=13.24;
+        		double b=0;
+        		printf("double %f\n",a);
+        		a++;
+        		printf("add 1 :%f",a);
+        	//	b = c%3; //float double不能取余 
+        	//	b = a%2; //build Error: invalid operands to binary % (have 'double' and 'int')
+        	//	b >>=2;  //float DOUBLE 不能位操作
+        		b = a/4; 
+			}
+		case 14:
+			{
+				char byte = 027;
+				printf("value is %d\n",byte);				
+			 } 
+			break; 
 		default:
 			break;
 	}
-	 printf("input cmd again or exit:");
+	 entry = 0;
+	 printf("\ninput cmd again or exit:");
 }
 	return 0;
 }
