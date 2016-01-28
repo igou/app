@@ -1,0 +1,16 @@
+.PHONY:all clean _all
+_all:all
+START := start
+CDIR := newefile
+PWD := $(shell pwd)
+RET := $(if $(shell if [ -d "$(PWD)/$(CDIR)" ];then echo 1 ;\
+	else echo  ;fi),1,$(shell mkdir $(PWD)/$(CDIR)))
+DREICT := first
+MY_SHELL := $(shell if [ -x "$$BASH" ];then echo $$BASH ; \
+	   else echo sh ;fi )
+all:
+	@echo "starting target all"
+	@echo " ret = $(RET)"
+	@echo "my shell is $(MY_SHELL)"
+	@echo "print DREICT =$(DREICT)"
+DREICT += second
