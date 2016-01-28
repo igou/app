@@ -1,3 +1,4 @@
 ATA Advanced Technology Attachment
 SSD HDD
 PCIE SATA 	
+RAID 独立磁盘冗余阵列 Redundant Arrays of Independent Disks=有“独立磁盘构成的具有冗余能力的阵列”之意
