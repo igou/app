@@ -221,7 +221,7 @@ int main(void)
         		printf("add 1 :%f",a);
         	//	b = c%3; //float double不能取余 
         	//	b = a%2; //build Error: invalid operands to binary % (have 'double' and 'int')
-        	//	b >>=2;  //float DOUBLE 不能位操作
+        	//	b >>=2;  //float DOUBLE 不能位操作。另外 指针也不支持位操作，若要操作地址，只能转换为整形 
         		b = a/4; 
 			}
 		case 14:
