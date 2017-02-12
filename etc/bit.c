@@ -71,3 +71,26 @@ int main()
 	}
 	return 0;
 }
+typedef signed char S8;
+typedef signed int  S32;
+typedef unsigned char U8;
+typedef unsigned int  U32;
+int bitextend(void)
+{// platform:DEV-C++ 
+     signed   char  s8 = ~0;
+     unsigned char  u8 = ~0;
+     unsigned int   u32 = ~0;
+     signed   int   s32 = ~0;
+     /* 
+      *  BYTE -> DWORD         ①unsigned char 高位都补0,值不变 
+      *                        ②  signed char bit7为0，补0;为1，补1 
+      *   %d %x %X都是输出整型 
+      */
+     printf("%d %u \n",u8,u8);//  255,255
+     printf("%d %u \n",s8,s8);//  -1,8F
+     printf("%d %u \n",(U8)0x6E,(U8)0x6E);//  0x64=110,110
+     printf("%d %u \n",(S8)0xFE,(S8)0xFE);//  -2,8F-1
+
+     printf("%d %u %d %u\n",s8,s8,u32,u32);//-1,8F,-1,8F 
+}
+
