@@ -1,6 +1,6 @@
 head.s and vmlinux.lds.s locate in arch/arm/kernel.
-vmlinux.lds.s是链接脚本，但是以汇编文件形式存在，里面也涉及到汇编的一些语法。
-
+vmlinux.lds.s是链接脚本，但是以汇编文件形式存在，里面也涉及到汇编的一些语法。该文件会kbuild转换为vmlinux.lds
+文件来自于3.14.2
 最主要是linker的语法
 SECTIONS{}语句表示输出文件的内存布局
  {

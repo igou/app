@@ -43,7 +43,10 @@
 #endif
 
 OUTPUT_ARCH(arm)
+/*stext是一个函数，定义在head.s，其地址与下面sections的head.text一样(见head.s其定义及段设置可知)。它的功能是获取处理器类型和机器类型信息，
+ *并创建临时的页表，然后开启MMU功能，并跳进第一个C语言函数start_kernel*/
 ENTRY(stext)
+/* ENTRY()是.S中定义函数的宏，与ENDPROC()搭配*/
 
 #ifndef __ARMEB__
 jiffies = jiffies_64;
@@ -86,7 +89,7 @@ SECTIONS
 #else
 	. = PAGE_OFFSET + TEXT_OFFSET;
 #endif
-	.head.text : {
+	.head.text : {   // HEAD_TEXT段输出为 .head.text段
 		_text = .;
 		HEAD_TEXT
 	}
