@@ -118,45 +118,45 @@ SECTIONS
 	RO_DATA(PAGE_SIZE)
 
 	. = ALIGN(4);
-	__ex_table : AT(ADDR(__ex_table) - LOAD_OFFSET) {
-		__start___ex_table = .;
+__ex_table : AT(ADDR(__ex_table) - LOAD_OFFSET) {
+	__start___ex_table = .;
 #ifdef CONFIG_MMU
-		*(__ex_table)
+	*(__ex_table)
 #endif
-		__stop___ex_table = .;
-	}
+	__stop___ex_table = .;
+}
 
 #ifdef CONFIG_ARM_UNWIND
-	/*
-	 * Stack unwinding tables
-	 */
-	. = ALIGN(8);
-	.ARM.unwind_idx : {
-		__start_unwind_idx = .;
-		*(.ARM.exidx*)
-		__stop_unwind_idx = .;
-	}
-	.ARM.unwind_tab : {
-		__start_unwind_tab = .;
-		*(.ARM.extab*)
-		__stop_unwind_tab = .;
-	}
+/*
+ * Stack unwinding tables
+ */
+. = ALIGN(8);
+.ARM.unwind_idx : {
+	__start_unwind_idx = .;
+	*(.ARM.exidx*)
+	__stop_unwind_idx = .;
+}
+.ARM.unwind_tab : {
+	__start_unwind_tab = .;
+	*(.ARM.extab*)
+	__stop_unwind_tab = .;
+}
 #endif
 
-	NOTES
+NOTES
 
-	_etext = .;			/* End of text and rodata section */
+_etext = .;			/* End of text and rodata section */
 
 #ifndef CONFIG_XIP_KERNEL
-	. = ALIGN(PAGE_SIZE);
-	__init_begin = .;
+. = ALIGN(PAGE_SIZE);
+__init_begin = .;
 #endif
-	/*
-	 * The vectors and stubs are relocatable code, and the
-	 * only thing that matters is their relative offsets
-	 */
-	__vectors_start = .;
-	.vectors 0 : AT(__vectors_start) {
+/*
+ * The vectors and stubs are relocatable code, and the
+ * only thing that matters is their relative offsets
+ */
+__vectors_start = .;
+.vectors 0 : AT(__vectors_start) {
 		*(.vectors)
 	}
 	. = __vectors_start + SIZEOF(.vectors);
@@ -227,7 +227,7 @@ SECTIONS
 	__data_loc = .;
 #endif
 
-	.data : AT(__data_loc) {
+	.data : AT(__data_loc) {  //AT（ldaddr）:指定这个段在编译出来的印象文件中的地址--加载地址
 		_data = .;		/* address in memory */
 		_sdata = .;
 
