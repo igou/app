@@ -227,7 +227,7 @@ __vectors_start = .;
 	__data_loc = .;
 #endif
 
-	.data : AT(__data_loc) {  //AT（ldaddr）:指定这个段在编译出来的印象文件中的地址--加载地址
+	.data : AT(__data_loc) {  //AT（ldaddr）:指定这个段在编译出来的印象文件中的地址--加载地址.....data段编译出来后放在__data_loc（片上执行）地址
 		_data = .;		/* address in memory */
 		_sdata = .;
 

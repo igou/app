@@ -5,7 +5,7 @@ vmlinux.lds.s是链接脚本，但是以汇编文件形式存在，里面也涉�
 SECTIONS{}语句表示输出文件的内存布局
  {
     . = 0x10000;
-    .text : { *(.text) }  //分号前是输出文件的段，后是输入文件的段
+    .text START : AT(LOADADDR) { *(.text) }  //分号前是输出文件的段，后是输入文件的段 START可以指定run-time地址, 后面at是load地址，at不写的话就等于run-time地址。
     . = 0x8000000;
     .data : { *(.data) }
     .bss : { *(.bss) }
