@@ -97,3 +97,27 @@ git diff x y  x y之间的比较  x,y可以是目录，commit id
 git checkout --file 当你修改了工作区某个文件的内容，丢弃工作区的修改；从版本库中替换工作区文件 
 git checkout 把当前目录所有修改的文件，恢复为HEAD中未修改的状态 
 ****************************************************************** 
+	tag
+git tag -a tagname -m "comment" sha(or HEAD)
+git tag -d tagname 
+git tag  ----list all tag
+git show tagname ----show tag infomation
+git push origin --tags   ------push tag into remote res
+*****************************************************************
+git blame   file   ----list commit info of every line of this file
+*****************************************************************
+		rebase:get a clean commit tree
+git pull       ------pull remote branch to local branch a
+git checkout yourbranch
+git rebase   branch a    ----  we need to fix conflict if exist confict
+git rebase 
+while(confict) {
+    git status
+        merge confict 
+	    git add -u
+	        git rebase --continue     // continue rebase
+		    if( git rebase --abort )
+		            break; 
+			    }
+*****************************************************************
+
