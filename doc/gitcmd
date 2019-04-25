@@ -101,6 +101,9 @@ git checkout 把当前目录所有修改的文件，恢复为HEAD中未修改的状态
 git tag -a tagname -m "comment" sha(or HEAD)
 git tag -d tagname 
 git tag  ----list all tag
+git tag -l -n4 display commit message
+git push origin tagname   push specific tagname to remote_branch
+git pull // pull remote tag
 git show tagname ----show tag infomation
 git push origin --tags   ------push tag into remote res
 *****************************************************************
@@ -120,4 +123,11 @@ while(confict) {
 		            break; 
 			    }
 *****************************************************************
-
+advanced cmd
+git biselec
+git reflog
+git log A...B
+git add -p
+git gc
+git fsck -full
+git count-objects -v 
